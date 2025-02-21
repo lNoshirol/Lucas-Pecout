@@ -4,31 +4,23 @@ using UnityEngine;
 
 public class MoveCamera : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float walkSpeed = 6f;
-    public float runSpeed = 12f;
-    public float jumpPower = 7f;
-    public float gravity = 10f;
+    public Light myLight;
+    public Color myColor;
 
-
-    public float lookSpeed = 2f;
-    public float lookXLimit = 45f;
-
-
-    Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
-
-    public bool canMove = true;
-
-
-    void Start()
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        myLight = GetComponent<Light>();
     }
 
     void Update()
     {
+        TEUF();
+    }
 
+    public void TEUF()
+    {
+        myColor = new Color(Random.Range(0, 255), Random.Range(0, 255), Random.Range(0, 255));
+        myLight.color = myColor;
+        myLight.transform.rotation *= new Quaternion(Random.Range(0, 25), Random.Range(0, 25), Random.Range(0, 25), Random.Range(0, 25));
     }
 }
